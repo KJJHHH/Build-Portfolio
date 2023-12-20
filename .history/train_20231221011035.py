@@ -81,7 +81,7 @@ class summary():
         elif model_strategy["model"] == "decision tree": # False: 
             test_hat, train_hat, loss = decision_tree(self.param, data, tune)
         elif model_strategy["model"] == "xgboost": # False: 
-            test_hat, train_hat, loss = xgboost(self.param, data, tune)
+            test_hat, y_train_hat, loss = xgboost(self.param, data, tune)
         elif model_strategy["model"] == "random forest":
             test_hat, train_hat, loss = random_forest(self.param, data, tune)
         elif model_strategy["model"] == "svm": # False:

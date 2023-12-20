@@ -76,12 +76,13 @@ class summary():
         (X_train, y_train, X_test, y_test) = data
         data_tp = y_test    
         
+        print('222222222222}')
         if model_strategy["model"] == "linear": # False: 
             test_hat, train_hat, loss = linear_regression(self.param, data, tune)
         elif model_strategy["model"] == "decision tree": # False: 
             test_hat, train_hat, loss = decision_tree(self.param, data, tune)
         elif model_strategy["model"] == "xgboost": # False: 
-            test_hat, train_hat, loss = xgboost(self.param, data, tune)
+            pred, y_train_hat, loss = xgboost(self.param, data, tune)
         elif model_strategy["model"] == "random forest":
             test_hat, train_hat, loss = random_forest(self.param, data, tune)
         elif model_strategy["model"] == "svm": # False:

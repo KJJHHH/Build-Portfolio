@@ -81,17 +81,17 @@ class summary():
         elif model_strategy["model"] == "decision tree": # False: 
             test_hat, train_hat, loss = decision_tree(self.param, data, tune)
         elif model_strategy["model"] == "xgboost": # False: 
-            test_hat, train_hat, loss = xgboost(self.param, data, tune)
+            pred, y_train_hat, loss = xgboost(self.param, data, tune)
         elif model_strategy["model"] == "random forest":
-            test_hat, train_hat, loss = random_forest(self.param, data, tune)
+            test_hat, train_hat, loss = random_forest(self.param, fnl_df, tune)
         elif model_strategy["model"] == "svm": # False:
-            test_hat, train_hat, loss = svm(self.param, data, tune)
+            test_hat, train_hat, loss = svm(self.param, fnl_df, tune)
         elif model_strategy["model"] == "elastic net":
-            test_hat, train_hat, loss = elastic_net(self.param, data, tune)
+            test_hat, train_hat, loss = elastic_net(self.param, fnl_df, tune)
         elif model_strategy["model"] == "neural network":
             n_trials = model_strategy["n_trials"]
             dl = deep_learning(self.input_size)
-            test_hat, train_hat, loss = dl.dl_pipeline(data, n_trials, tune)
+            test_hat, train_hat, loss = dl.dl_pipeline(fnl_df, n_trials, tune)
 
 
         data_tp = pd.concat([y_test, test_hat], axis = 1)  

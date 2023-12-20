@@ -22,7 +22,7 @@ def xgboost(
         tuned_model = XGBRegressor(**best_params)
         best_model = grid_s.best_estimator_
         with open(
-            f"C:/Users/USER/Desktop/portfolio/temp_params_tuned_per_6month/xgboost.pickle",
+            f"C:/Users/USER/Desktop/portfolio/temp_params_tuned_per_6month/elastic_net/xgboost.pickle",
             "wb") as f:
             pickle.dump(tuned_model, f)
     else:

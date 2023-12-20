@@ -27,7 +27,7 @@ def elastic_net(
             pickle.dump(tuned_model, f)
     else:
         with open(
-            f"C:/Users/USER/Desktop/portfolio/temp_params_tuned_per_6month/elastic_net.pickle", 
+            f"C:/Users/USER/Desktop/portfolio/tunedparams_tempper6month/elastic_net.pickle", 
             "rb") as f:
             best_model = pickle.load(f)
             best_model.fit(np.array(X_train), y_train)

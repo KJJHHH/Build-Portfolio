@@ -47,7 +47,6 @@ class summary():
                 train_end = train_end + pd.DateOffset(months=test_size)
                 test_end = test_end + pd.DateOffset(months=test_size)
         return train_start, train_end, test_end
-    
     # X_train, test, y_train, test
     def Xy(self, data, train_start, train_end, test_end): 
         temp_d = copy.copy(data)
@@ -64,7 +63,6 @@ class summary():
         X_test = d_test.drop(["return"], axis = 1)
         y_test = d_test["return"]
         return X_train, y_train, X_test, y_test
-    
     # train
     def train_lsdecision(
             self, 

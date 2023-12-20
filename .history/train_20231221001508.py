@@ -47,7 +47,6 @@ class summary():
                 train_end = train_end + pd.DateOffset(months=test_size)
                 test_end = test_end + pd.DateOffset(months=test_size)
         return train_start, train_end, test_end
-    
     # X_train, test, y_train, test
     def Xy(self, data, train_start, train_end, test_end): 
         temp_d = copy.copy(data)

@@ -3,9 +3,9 @@ import pickle
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import GridSearchCV
-from sklearn.tree import DecisionTreeRegressor 
+from sklearn.svm import SVR
 
-def decision_tree(
+def svm(
         param,
         fnl_df,             
         tune = True):
@@ -13,20 +13,20 @@ def decision_tree(
     (X_train, y_train, X_test, y_test) = fnl_df
 
     if tune == True:
-        print("tuning decision_tree")
-        grid_s = GridSearchCV(estimator=DecisionTreeRegressor(), param_grid=param, cv = 5)
+        print(f"tuning svm")
+        grid_s = GridSearchCV(estimator=SVR(), param_grid=param, cv = 5)
         grid_s.fit(np.array(X_train), y_train)
         print("Finish Tuning")
         best_params = grid_s.best_params_
-        tuned_model = DecisionTreeRegressor(**best_params)
+        tuned_model = SVR(**best_params)
         best_model = grid_s.best_estimator_
         with open(
-            f"C:/Users/USER/Desktop/portfolio/temp_params_tuned_per_6month/decision_tree.pickle",
+            f"C:/Users/USER/Desktop/portfolio/temp_params_tuned_per_6month/svm.pickle",
             "wb") as f:
             pickle.dump(tuned_model, f)
-    else:
+    else:s
         with open(
-            f"C:/Users/USER/Desktop/portfolio/temp_params_tuned_per_6month/decision_tree.pickle",
+            f"C:/Users/USER/Desktop/portfolio/temp_params_tuned_per_6month/svm.pickle",
             "rb") as f:
             best_model = pickle.load(f)
             best_model.fit(np.array(X_train), y_train)

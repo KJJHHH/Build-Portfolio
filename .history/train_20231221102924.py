@@ -143,14 +143,13 @@ class summary():
         # since using train data to determined threshold, so if don't 
         # want to short need to run this
         if not_short == True:
-            single_date["pred_ls"] = np.where(single_date["prediction"] > single_date["per_long"], 1, 0)
-        
         
         # ====================================================
         # weight
         single_date['weight'] = abs(
             single_date["prediction"]/sum(abs(single_date["prediction"]*single_date["pred_ls"])))
-        
+        # ====================================================
+
         # ====================================================
         # print
         print(f"Check sum of weight: {(abs(single_date['weight']*single_date['pred_ls'])).sum()}")

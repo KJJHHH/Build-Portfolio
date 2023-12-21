@@ -150,7 +150,8 @@ class summary():
         # weight
         single_date['weight'] = abs(
             single_date["prediction"]/sum(abs(single_date["prediction"]*single_date["pred_ls"])))
-        
+        # ====================================================
+
         # ====================================================
         # print
         print(f"Check sum of weight: {(abs(single_date['weight']*single_date['pred_ls'])).sum()}")

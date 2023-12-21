@@ -104,7 +104,8 @@ class summary():
         # For first rolling prediction for all models and 
         # all rolling predictions for ensemble 
         # do not use running mean
-        if (longshort_thres == None) or (model_strategy["ls_decision"][1] != "running"):   
+        if (longshort_thres == None) or \
+            ((longshort_thres != None) and (model_strategy["ls_decision"][1] != "running")):   
             longshort_thres = {}
             longshort_thres["long"] = np.percentile(ls_decision, model_strategy["long"]) 
             longshort_thres["short"] = np.percentile(ls_decision, model_strategy["short"]) 

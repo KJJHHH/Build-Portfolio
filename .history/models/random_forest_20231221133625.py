@@ -11,7 +11,7 @@ def random_forest(
         data,             
         tune = True):
     # data
-    (X_train, y_train, X_test, y_test) = data
+    (X_train, y_train, X_test, y_test) = fnl_df
 
     if tune == True:
         print(f"tuning random forest")

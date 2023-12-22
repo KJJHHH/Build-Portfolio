@@ -1,0 +1,9 @@
+2023-12-22 14:55:30,169 ERROR 輸入錯誤，請輸入數字                         _log.py 30 root func                         8584 26580 MainThread MainProcess                         1989 169 1703228130
+2023-12-22 14:56:21,056 ERROR wrong type                         _log.py 30 root func                         5796 23380 MainThread MainProcess                         1875 56 1703228181
+2023-12-22 14:56:58,547 ERROR wrong type                         _log.py 30 root func                         15608 3144 MainThread MainProcess                         2066 547 1703228218
+2023-12-22 14:57:22,343 ERROR wrong type                         _log.py 30 root func                         21572 15656 MainThread MainProcess                         855 343 1703228242 2023-12-22 14:57:22,343
+2023-12-22 14:57:31,136 ERROR wrong type                         _log.py 30 root func                         29628 24492 MainThread MainProcess                         398 136 1703228251 2023-12-22 14:57:31,136
+2023-12-22 14:57:39,065 ERROR wrong type                         _log.py 30 root func                         28140 23396 MainThread MainProcess                         1663 65 1703228259 2023-12-22 14:57:39,065
+2023-12-22 14:57:59,424 ERROR wrong type _log.py 30 root func 28796 22540 MainThread MainProcess 3394 424 1703228279 2023-12-22 14:57:59,424
+2023-12-22 14:58:50,887 ERROR wrong type _log.py 30 root func 24076 21060 MainThread MainProcess 2171 887 1703228330 2023-12-22 14:58:50,887
+2023-12-22 14:58:57,640 ERROR wrong type _log.py 30 root func 14324 27008 MainThread MainProcess 4129 640 1703228337 2023-12-22 14:58:57,640

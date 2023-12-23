@@ -81,15 +81,10 @@ def fill_missing_value_dropna(data):
     df_filled = df_filled.droplevel(level = 0)
     return df_filled
 
-def standardise_winsorise_by_date(data, scale = True, winsor = True):
-    '''
-    data
-    scale
-    winsorise
-    '''
+def standardise_winsorise_by_date(data):
     data_scaler_winsorise = pd.DataFrame()
 
-    def standardise(data):
+    def standardise(data, scale = True, winsor = True):
         index = data.index
         scaler = StandardScaler()
         data = pd.DataFrame(scaler.fit_transform(data), columns=data.columns).\

@@ -9,8 +9,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def split_X_y(data):    
-    # Split data
+# Split data
+def split_X_y(data):
     try:
         data.set_index(["coid", "mdate"], inplace = True)
     except:
@@ -20,36 +20,34 @@ def split_X_y(data):
         y = data["return"]
     return X, y
 
+# 
 def fit_linear(X, y):
-    # 
     linear_reg_ = sm.OLS(y, sm.add_constant(X))
     linear_reg = linear_reg_.fit()
     return linear_reg
 
+# predict
 def hat_linear(linear_reg, X):
-    # predict
     hat = linear_reg.predict(sm.add_constant(X))
     return hat
 
+#
 def adj_rsqaure(n, k, rsquared):
-    #
     return 1 - ((1 - rsquared) * (n - 1) / (n - k - 1))
 
+# adj Close
 def get_adj_close(data):
-    # adj Close
     data["Adj Close"] = data["Close"] * data["Adjust_Factor"]
     return data
 
-def data_to_week(data): 
-    """
-    data: daily data
-    """
-    # transform daily data to weekly
+# transform daily data to weekly
+def data_to_week(data): # daily data
     data_week = data[data["mdate"].dt.weekday == 4]
     return data_week
 
+# get data return: daily/weekly/monthly
 def data_get_returns(data):
-    # get data return: daily/weekly/monthly
+
     prc_return = "Adj Close"
     data_return = pd.DataFrame()
 
@@ -62,8 +60,8 @@ def data_get_returns(data):
         
     return data_return
 
+# integrate function for transform and clean data from daily to weekly data
 def date_to_week_pipeline(data):
-    # integrate function for transform and clean data from daily to weekly data
     data_week = data_to_week(data)
     data_week_return = data_get_returns(data_week)
     return data_week_return
@@ -81,12 +79,7 @@ def fill_missing_value_dropna(data):
     df_filled = df_filled.droplevel(level = 0)
     return df_filled
 
-def standardise_winsorise_by_date(data, scale = True, winsor = True):
-    '''
-    data
-    scale
-    winsorise
-    '''
+def standardise_winsorise_by_date(data):
     data_scaler_winsorise = pd.DataFrame()
 
     def standardise(data):
@@ -102,17 +95,14 @@ def standardise_winsorise_by_date(data, scale = True, winsor = True):
         return data
     
     data.set_index(["coid", "mdate", "Industry_Eng", "Close", "Open", "return"], inplace=True)
-    if scale == True:
-        data = data.groupby(['mdate']).apply(standardise)
-    if winsor == True:
-        data = data.groupby(['mdate']).apply(winsorise)
+    data = data.groupby(['mdate']).apply(standardise)
+    data = data.groupby(['mdate']).apply(winsorise)
     
     data = data.reset_index()
     return data
 
-def graphic_diagnostic(linear_reg):
+def graphic_diagnostic(linear_reg, residuals):
     # Q-Q plot
-    residuals = linear_reg.resid
     fig, axs = plt.subplots(2, 2, figsize=(20, 10))
     '''
     # Scatter plot of x vs y
@@ -146,28 +136,3 @@ def graphic_diagnostic(linear_reg):
 
     plt.tight_layout()
     plt.show()
-
-def remove_extreme_y(train, n=10):
-    # Filter the DataFrame to keep only rows within the specified range
-    """
-    train: train data
-    n: remove extreme high and low data of y
-    """
-    n = 10
-    top_n_values = train.nlargest(n, 'return')
-    bottom_n_values = train.nsmallest(n, 'return')
-    train_filter = train[(train['return'] < top_n_values.min()['return']) & \
-                        (train['return'] > bottom_n_values.max()['return'])]
-    return train_filter
-
-
-
-
-
-
-
-
-
-
-
-

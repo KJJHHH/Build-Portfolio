@@ -42,7 +42,7 @@ def get_adj_close(data):
 
 def data_to_week(data): 
     """
-    data: daily data
+    
     """
     # transform daily data to weekly
     data_week = data[data["mdate"].dt.weekday == 4]
@@ -81,12 +81,7 @@ def fill_missing_value_dropna(data):
     df_filled = df_filled.droplevel(level = 0)
     return df_filled
 
-def standardise_winsorise_by_date(data, scale = True, winsor = True):
-    '''
-    data
-    scale
-    winsorise
-    '''
+def standardise_winsorise_by_date(data):
     data_scaler_winsorise = pd.DataFrame()
 
     def standardise(data):
@@ -102,17 +97,14 @@ def standardise_winsorise_by_date(data, scale = True, winsor = True):
         return data
     
     data.set_index(["coid", "mdate", "Industry_Eng", "Close", "Open", "return"], inplace=True)
-    if scale == True:
-        data = data.groupby(['mdate']).apply(standardise)
-    if winsor == True:
-        data = data.groupby(['mdate']).apply(winsorise)
+    data = data.groupby(['mdate']).apply(standardise)
+    data = data.groupby(['mdate']).apply(winsorise)
     
     data = data.reset_index()
     return data
 
-def graphic_diagnostic(linear_reg):
+def graphic_diagnostic(linear_reg, residuals):
     # Q-Q plot
-    residuals = linear_reg.resid
     fig, axs = plt.subplots(2, 2, figsize=(20, 10))
     '''
     # Scatter plot of x vs y
@@ -146,28 +138,3 @@ def graphic_diagnostic(linear_reg):
 
     plt.tight_layout()
     plt.show()
-
-def remove_extreme_y(train, n=10):
-    # Filter the DataFrame to keep only rows within the specified range
-    """
-    train: train data
-    n: remove extreme high and low data of y
-    """
-    n = 10
-    top_n_values = train.nlargest(n, 'return')
-    bottom_n_values = train.nsmallest(n, 'return')
-    train_filter = train[(train['return'] < top_n_values.min()['return']) & \
-                        (train['return'] > bottom_n_values.max()['return'])]
-    return train_filter
-
-
-
-
-
-
-
-
-
-
-
-

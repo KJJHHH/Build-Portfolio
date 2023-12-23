@@ -81,12 +81,7 @@ def fill_missing_value_dropna(data):
     df_filled = df_filled.droplevel(level = 0)
     return df_filled
 
-def standardise_winsorise_by_date(data, scale = True, winsor = True):
-    '''
-    data
-    scale
-    winsorise
-    '''
+def standardise_winsorise_by_date(data):
     data_scaler_winsorise = pd.DataFrame()
 
     def standardise(data):
@@ -102,17 +97,15 @@ def standardise_winsorise_by_date(data, scale = True, winsor = True):
         return data
     
     data.set_index(["coid", "mdate", "Industry_Eng", "Close", "Open", "return"], inplace=True)
-    if scale == True:
-        data = data.groupby(['mdate']).apply(standardise)
-    if winsor == True:
-        data = data.groupby(['mdate']).apply(winsorise)
+    data = data.groupby(['mdate']).apply(standardise)
+    data = data.groupby(['mdate']).apply(winsorise)
     
     data = data.reset_index()
     return data
 
-def graphic_diagnostic(linear_reg):
+def graphic_diagnostic(linear_reg, residuals):
     # Q-Q plot
-    residuals = linear_reg.resid
+residuals = linear_reg.resid
     fig, axs = plt.subplots(2, 2, figsize=(20, 10))
     '''
     # Scatter plot of x vs y

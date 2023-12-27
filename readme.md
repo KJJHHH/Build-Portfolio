@@ -5,7 +5,7 @@
 The portfolios are based on automotive, semi conductor, and TFT-LCD industry.\
 Training the algorithms with rolling prediction for each month.
 
-- 🖼️ Sub-Project: [Regression Analysis](https://github.com/KJJHHH/Build-Portfolio/tree/master/TEJ_portfolio)
+- 🖼️ Sub-Project: [Week Portfolio by Regression Analysis](https://github.com/KJJHHH/Build-Portfolio/tree/master/TEJ_portfolio)
 
 ## Data and Preprocessing
 🐱 The data for training algorithms are downloaded from TEJ database, including fundimental, chip, and [Betas](https://api.tej.com.tw/columndoc.html?subId=51) data. Besides, we compute the technical analysis values include RSI, SMA, EMA, MACD, bband, KD, beta, willr, and bias with [talib packages](https://github.com/TA-Lib/ta-lib-python?tab=readme-ov-file#indicator-groups) 

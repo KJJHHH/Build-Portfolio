@@ -1,0 +1,7 @@
+data/
+TEJ_portgolio/data/
+TEJ_portgolio/_temp/
+README_sample.md
+model.pth
+others/
+Hyperparam_nn/
